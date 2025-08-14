@@ -11,6 +11,7 @@ $(document).ready(function () {
   $("#customer-number").val(customerNumber);
   $("#prev-dues").val(prevDues);
   $("#amount-paid").val(amountPaid);
+$("#generate-whatsapp").on("click", generateWhatsAppBill);
 
   renderCart();
   updateTotalCost();
@@ -120,6 +121,24 @@ $(document).ready(function () {
         );
     });
 }
+
+function generateWhatsAppBill() {
+  if (!customerNumber) {
+    alert("Please provide a customer number to send the bill via WhatsApp.");
+    return;
+  }
+
+  var totalCost = getTotalCost();
+  var totalAmt = totalCost + prevDues;
+  var currentDue = totalAmt - amountPaid;
+  var totalQty = getTotalQty();
+
+  var whatsappMessage = `Hi ${customerName},\n\nYour Invoice:\nTotal Qty: ${totalQty}\nTotal Amount: ₹${totalAmt.toFixed(2)}\nCurrent Due: ₹${currentDue.toFixed(2)}\n\nThank you for shopping with us!`;
+
+  var whatsappUrl = `https://api.whatsapp.com/send?phone=${customerNumber}&text=${encodeURIComponent(whatsappMessage)}`;
+  window.open(whatsappUrl, "_blank");
+}
+
 
   function updateTotalCost() {
     var totalCost = 0;
@@ -353,15 +372,25 @@ $(document).ready(function () {
   $("#customer-number").on("input", function () {
     customerNumber = $(this).val();
   });
-  
-// Add Enter key to add to cart
+  // Add Enter key to add to cart
 $("#item-name, #item-price, #item-qty").on("keypress", function (e) {
     if (e.key === "Enter") {
         e.preventDefault(); // Prevent form refresh
         $("#item-form").submit(); // Trigger add to cart
     }
 });
-    
+
+$("#customer-name").on("input", function () {
+  customerName = $(this).val();
+  localStorage.setItem("customerName", customerName);
+});
+
+$("#customer-number").on("input", function () {
+  customerNumber = $(this).val();
+  localStorage.setItem("customerNumber", customerNumber);
+});
+
+
     function clearAllInputs() {
          // Note: We do not clear the billNumber from localStorage so the count continues.
 
@@ -392,5 +421,4 @@ $("#item-name, #item-price, #item-qty").on("keypress", function (e) {
         localStorage.setItem("amountPaid", amountPaid);
     }
 });
-
 
