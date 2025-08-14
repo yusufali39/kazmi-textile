@@ -1,82 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
-      crossorigin="anonymous" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KAZMI TEXTILE - Billing Software</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css" />
-    <title>KAZMI TEXTILE</title>
-  </head>
-  <body>
-    <div class="container">
-      <img src="IMG_20250814_083527.jpg" alt="logo" style="width: 320px; height: 70px; display: block; margin: 4px auto 4px auto;" />
-      <button class="btn btn-success" id="generate-invoice">
-        Generate Invoice
-      </button>
-      <button class="btn btn-success" id="generate-whatsapp">
-  <i class="fab fa-whatsapp"></i> WhatsApp
-</button>
-      <button class="btn btn-danger mt-1" id="clear-button">Clear All</button> <!-- Added Clear button -->
-      <div class="row">
-        <div class="col-md-6">
-          <form action="" id="item-form">
-            <div class="form-group mb-3">
-              <label for="customer-name">Bill to:</label>
-              <input type="text" class="form-control" id="customer-name" />
-              <label for="customer-number">Number:</label>
-              <input type="number" class="form-control" id="customer-number" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+    .header {
+      text-align: center;
+      margin: 10px 0 20px;
+    }
+    .header img {
+      width: 320px;
+      height: 70px;
+      margin: 4px auto 2px auto;
+    }
+    .header h2 {
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    .card {
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border-radius: 10px;
+    }
+    .item-button {
+      margin: 2px;
+      padding: 5px 10px;
+      font-size: 0.85rem;
+      background-color: #e9ecef;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+    }
+    .item-button:hover {
+      background-color: #d1e7dd;
+    }
+    table {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    thead {
+      background-color: #198754;
+      color: white;
+    }
+    tfoot {
+      background-color: #f1f1f1;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container my-3">
+
+    <!-- Header -->
+    <div class="header">
+      <img src="IMG_20250814_083527.jpg" alt="logo" />
+      <h2>KAZMI TEXTILE BILLING</h2>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="text-center mb-3">
+      <button class="btn btn-success me-2" id="generate-invoice"><i class="fa-solid fa-file-invoice"></i> Generate Invoice</button>
+      <button class="btn btn-success me-2" id="generate-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      <button class="btn btn-danger" id="clear-button"><i class="fa-solid fa-trash"></i> Clear All</button>
+    </div>
+
+    <div class="row g-3">
+      <!-- Left: Form -->
+      <div class="col-md-6">
+        <div class="card p-3">
+          <form id="item-form">
+            <div class="mb-3">
+              <label for="customer-name" class="form-label">Bill to:</label>
+              <input type="text" class="form-control" id="customer-name" placeholder="Customer Name" />
             </div>
-            <div class="form-group mb-3">
-              <label for="item-name">Item Name:</label>
+            <div class="mb-3">
+              <label for="customer-number" class="form-label">Number:</label>
+              <input type="number" class="form-control" id="customer-number" placeholder="Customer Number" />
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label">Quick Items:</label><br>
+              <button type="button" class="item-button">Shoulder</button>
+              <button type="button" class="item-button">Diamond</button>
+              <button type="button" class="item-button">Koriya</button>
+              <button type="button" class="item-button">Koriya Farma</button>
+              <button type="button" class="item-button">Neemjari</button>
+              <button type="button" class="item-button">Georgette</button>
+              <button type="button" class="item-button">Semar</button>
+              <button type="button" class="item-button">3 Frill</button>
+              <button type="button" class="item-button">Jimmi Choo</button>
+              <button type="button" class="item-button">Banarasi</button>
+              <button type="button" class="item-button">Box</button>
+              <button type="button" class="item-button">Multi</button>
+              <button type="button" class="item-button">Lycra</button>
+              <button type="button" class="item-button">Broker</button>
+              <button type="button" class="item-button">Pipe</button>
+              <button type="button" class="item-button">Compt Embroidery</button>
+              <button type="button" class="item-button">Stretchable</button>
+            </div>
+
+            <div class="mb-3">
+              <label for="item-name" class="form-label">Item Name:</label>
               <input type="text" class="form-control" id="item-name" />
-              <button id="itembutton" class="item-button" data-item="Shirt">Shoulder</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Diamond</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Koriya</button>
-              <button id="itembutton" class="item-button" data-item="Kurti">Koriya Farma</button>
-              <button id="itembutton" class="item-button" data-item="Plazzo">Neemjari</button>
-              <button id="itembutton" class="item-button" data-item="Frock">Georgette</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Semar</button>
-              <button id="itembutton" class="item-button" data-item="Pant">3 Frill</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Jimmi Choo</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Banarasi</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Box</button>
-              <button id="itembutton" class="item-button" data-item="Frock">Multi</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Lycra</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Broker</button>
-              <button id="itembutton" class="item-button" data-item="Pant">Pipe</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Compt Embroidery</button>
-              <button id="itembutton" class="item-button" data-item="Shirt">Stretchable</button>
             </div>
-            <div class="form-group mb-3">
-                <label for="item-qty">Item Qty:</label>
-                <input type="number" class="form-control" id="item-qty" />
-              </div>
-            <div class="form-group mb-4">
-              <label for="item-price">Item Price:</label>
+            <div class="mb-3">
+              <label for="item-qty" class="form-label">Item Qty:</label>
+              <input type="number" class="form-control" id="item-qty" />
+            </div>
+            <div class="mb-3">
+              <label for="item-price" class="form-label">Item Price:</label>
               <input type="number" class="form-control" id="item-price" />
             </div>
-            <button type="submit" class="btn btn-primary">Add To Cart</button>
+
+            <button type="submit" class="btn btn-primary w-100"><i class="fa-solid fa-cart-plus"></i> Add To Cart</button>
           </form>
         </div>
+      </div>
 
-        <div>
-          <br />
-        </div>
-
-        <div class="col-md-6 main">
-          <div>
-          <table class="table" id="cart-table">
+      <!-- Right: Cart -->
+      <div class="col-md-6">
+        <div class="card p-3">
+          <table class="table table-striped" id="cart-table">
             <thead>
               <tr>
                 <th>Item</th>
@@ -87,35 +140,27 @@
             </thead>
             <tbody></tbody>
           </table>
-        </div>
-        <div>
-          <p id="total-qty">Total Qty : 0</p>
-          <p id="total-cost">Amount : 0</p>
-          <label for="prev-dues">Prev Dues : 0</label>
-          <input type="text" class="form-control" id="prev-dues" /><br>
-          
-          <!-- New Amount Paid and Current Due -->
-          <label for="amount-paid">Amount Paid:</label>
-          <input type="text" class="form-control" id="amount-paid" /><br>
-          <p id="current-due">Current Due: ₹0</p>
-          
-          <p id="total-amount">TOTAL : 0</p>
-        </div>
-        
+          <div class="mt-3">
+            <p id="total-qty" class="mb-1"><strong>Total Qty:</strong> 0</p>
+            <p id="total-cost" class="mb-1"><strong>Amount:</strong> ₹0</p>
+            <div class="mb-2">
+              <label for="prev-dues" class="form-label">Prev Dues:</label>
+              <input type="text" class="form-control" id="prev-dues" value="0" />
+            </div>
+            <div class="mb-2">
+              <label for="amount-paid" class="form-label">Amount Paid:</label>
+              <input type="text" class="form-control" id="amount-paid" />
+            </div>
+            <p id="current-due"><strong>Current Due:</strong> ₹0</p>
+            <p id="total-amount" class="fs-5"><strong>TOTAL:</strong> ₹0</p>
+          </div>
         </div>
       </div>
     </div>
-    
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"
-      integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-    <script src="script.js"></script>
-  </body>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>
-
-
-
-
