@@ -354,7 +354,14 @@ $(document).ready(function () {
     customerNumber = $(this).val();
   });
   
-
+// Add Enter key to add to cart
+$("#item-name, #item-price, #item-qty").on("keypress", function (e) {
+    if (e.key === "Enter") {
+        e.preventDefault(); // Prevent form refresh
+        $("#item-form").submit(); // Trigger add to cart
+    }
+});
+    
     function clearAllInputs() {
          // Note: We do not clear the billNumber from localStorage so the count continues.
 
@@ -385,4 +392,5 @@ $(document).ready(function () {
         localStorage.setItem("amountPaid", amountPaid);
     }
 });
+
 
